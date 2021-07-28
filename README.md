@@ -97,3 +97,9 @@ As mentioned above, we could improve the architecture of this app by separating 
 - Show a default icon or image on a user's profile if they have - not uploaded a picture.
 - Allow a user to edit their profile, and change their email or password.
 - Implement an integrated chat so that users can communicate without having to give their email address over.
+
+## Authors
+
+Hal Fulcher
+Anna Balquin
+Robin Edwards
