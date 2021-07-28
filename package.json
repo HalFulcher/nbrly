@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^4.6.0",
     "distance-between-geocoordinates": "^1.0.1",
+    "dotenv": "^8.2.0",
     "faker": "^5.5.0",
     "firebase": "^8.3.1",
     "firebase-admin": "^9.5.0",
