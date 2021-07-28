@@ -34,7 +34,7 @@ While we chose React for its familiarity, we chose Firebase in order to explore 
 
 ## Our Approach
 
-We collaborated at every stage. We started off with divided out tasks - Hal and Robin came up with the designs in Figma while I invesitgated backend options. But we soon decided we would learn more if we are all involved in every part of the project and so we did most of the coding together over Zoom, alternating who was in the driving seat.
+We collaborated at every stage. We started off with divided out tasks - Robin and I came up with the designs in Figma while Anna investigated backend options. But we soon decided we would learn more if we are all involved in every part of the project and so we did most of the coding together over Zoom, alternating who was in the driving seat.
 
 In the planning stage we wrote user stories and drew component maps. Throughout, we used Trello to break tasks into tickets and categorize them according to priority. We used Notion for shared notes and resources, like links to helpful articles and videos.
 
@@ -61,12 +61,12 @@ At one point, we had all our auth related values and functions in App.js. With s
 This involves creating a context object with React.createContext(). This context object has a Provider React component attached to it which can wrap our app passing any data to it. We define the values we want our Provider to share in our AuthProvider functional component, in our case the currentUser, and methods signup, signin and signout, then pass these to the value prop of AuthContext.Provider. In index.js we import our AuthProvider, wrap App.js with it and then anywhere in our app we can access the data stored in the provider's value prop by calling our the useContext hook.
 
 Getting and using user location
-The core function of NBRLY is to find nearby users with matching interests. This relies on having user location data. We found that it is possible to access device location with the Navigator Interface through which we can access the Geolocation API. navigator.geolocation.getCurrentPoistion gives us the user's (device's) longitude and latutitude.
+The core function of NBRLY is to find nearby users with matching interests. This relies on having user location data. We found that it is possible to access device location with the Navigator Interface through which we can access the Geolocation API. navigator.geolocation.getCurrentPosition gives us the user's (device's) longitude and latitude.
 
 When a website attempts to access location, the browser will notify the user, and if enabled in settings, ask for permission. If the user has blocked access to location, NBRLY won't work. So we needed a way to check what the permissions are and ask the user to adjust them where necessary. Handily, the navigator object also gives us access to the Permissions API which we can query for geolocation. Based on the result - 'granted', 'prompt', or 'denied' - NBRLY either captures the device's coordinates or notifies the user that location is needed for the site to function as intended.
 
 Firebase
-Firebase was completely new to us so there was a natural learning curve to its implementation. Setting up a database and handling authenticaion is hugely simplified by Firebase, which takes care of a lot of the work for you. The docs are fairly clear, although for newbies like us, lacking in helpful examples. Figuring out how to use Firebase was good experience for development where a significant portion of the job may often be understanding and using the apprporiate APIs.
+Firebase was completely new to us so there was a natural learning curve to its implementation. Setting up a database and handling authentication is hugely simplified by Firebase, which takes care of a lot of the work for you. The docs are fairly clear, although for newbies like us, lacking in helpful examples. Figuring out how to use Firebase was good experience for development where a significant portion of the job may often be understanding and using the appropriate APIs.
 
 Our biggest struggle came when we wanted to populate our database with dummy users. We followed a tutorial that showed how to do this from a Node.js environment. We didn't twig at first that this might create problems because we'd set everything up in a React environment, without a separated Node backend. Setting the config and initialising the Firebase app, database and auth differs ever so slightly for these 2 environments, and we broke everything trying to get the dummy users in the database. At this point we realised it might have been a good idea to build out a backend that would mediate between our UI and our Firebase utilities. A lesson for next time. In the end, we learnt that we needed to set up a service account to facilitate the script that seeds the database with fake users.
 
@@ -86,7 +86,7 @@ It would be great to have a button or pop up that could straight away enable the
 ### Code
 
 Testing
-We didn't take TDD approach because we could see if the site was working as intended and get by with human point-and-click testing. However, if we had adopted TDD, we may have been led into a more productive and effective mindeset. Writing out tests lends itself well to breaking down processes and clarifying understanding, leading to better organised and more readable code. It would also make it easier to keep working on the project, especially after some time has passed, by quickly highlighting where any new changes introduce errors.
+We didn't take TDD approach because we could see if the site was working as intended and get by with human point-and-click testing. However, if we had adopted TDD, we may have been led into a more productive and effective mindset. Writing out tests lends itself well to breaking down processes and clarifying understanding, leading to better organised and more readable code. It would also make it easier to keep working on the project, especially after some time has passed, by quickly highlighting where any new changes introduce errors.
 
 Separation of concerns
 As mentioned above, we could improve the architecture of this app by separating out UI components from functions that communicate with Firebase. If I were to start over, I'd try implementing something like the Model View Controller pattern.
